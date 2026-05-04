@@ -1,0 +1,30 @@
+{
+  "description": "scribetronic — editorial workflow hooks",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "If the project contains a `scribetronic/` directory, briefly orient me on today's editorial slot:\n\n1. Resolve the current ISO week (YYYY-Www).\n2. If `scribetronic/calendar/<week>/plan.md` exists, find today's row and print the resolved slot in 1–2 lines (type, slug, status).\n3. If today's slot is missing or the week directory does not exist, suggest `/scribetronic:agenda plan-week`.\n4. If there is no `scribetronic/` directory at all, stay silent — this hook only applies to scribetronic projects.\n\nOne short paragraph maximum. Do not run any commands.",
+            "model": "haiku",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "If this session modified any draft under `scribetronic/calendar/*/drafts/` (check the conversation tool history), remind me in one line that `/scribetronic:editing-pass` and `/scribetronic:ai-slop-check` should run before the draft is marked `status: ready` in plan.md.\n\nIf no drafts were touched, say nothing. Do not invoke other skills.",
+            "model": "haiku",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "scribetronic",
+  "owner": {
+    "name": "r-bart",
+    "url": "https://github.com/r-bart/scribetronic"
+  },
+  "plugins": [
+    {
+      "name": "scribetronic",
+      "source": "./plugins/scribetronic",
+      "description": "Editorial calendar pipeline — 22 writing skills (3 orchestrators / 6 long-form / 8 short-form / 5 shared) + workflow hooks for Claude Code"
+    }
+  ]
+}
